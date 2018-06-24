@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.StopWordsRemover","timestamp":1529817640318,"sparkVersion":"2.3.0","uid":"StopWordsRemover_44059ea892a79bdb2394","paramMap":{"stopWords":["http","https","amp","rt","t","c","the"],"inputCol":"words","outputCol":"filtered","caseSensitive":false}}
