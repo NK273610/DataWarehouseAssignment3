@@ -5,5 +5,5 @@ In this assignment we first created temp.py file which trains three models from 
 We have then checked the accuracy for each of the models on our test data created from Tweets.csv data. Based on this we have selected the model with highest accuracy i.e. Logistic Regression with CountVectorizer. In order to train our models please run file using the below commands. Please check we have used Python 2.7 in our assignments.
 
 ```
-## python temp.py
+***python temp.py***
 ```
