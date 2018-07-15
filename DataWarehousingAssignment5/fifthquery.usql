@@ -1,0 +1,24 @@
+@data =
+    EXTRACT 
+            Tcs int,
+            Main string,
+            Side_1_Route string,
+            Activation_Date DateTime,
+            Latitude double,
+            Longitude double,
+            Count_Date DateTime,
+            eight_Peak_Hr_Vehicle_Volume int,
+            eight_Peak_Hr_Pedestrian_Volume int
+    FROM "/data/data.csv"
+    USING Extractors.Csv(encoding: Encoding.UTF8, skipFirstNRows: 1);
+
+@rs1=
+SELECT Main, Count_Date.DayOfWeek.ToString("f") AS Day,(eight_Peak_Hr_Vehicle_Volume+eight_Peak_Hr_Pedestrian_Volume) AS Total_Traffic
+FROM @data;
+
+@rs2=
+SELECT Main, Day, SUM(Total_Traffic) AS Total FROM @rs1 GROUP BY Main, Day ORDER BY Total DESC OFFSET 0 ROWS;
+
+OUTPUT @rs2
+TO "/output/dataquery5.csv"
+USING Outputters.Csv(outputHeader: true);

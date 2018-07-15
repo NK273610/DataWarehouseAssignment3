@@ -1,0 +1,21 @@
+@data =
+    EXTRACT 
+            Tcs int,
+            Main string,
+            Side_1_Route string,
+            Activation_Date DateTime,
+            Latitude double,
+            Longitude double,
+            Count_Date DateTime,
+            eight_Peak_Hr_Vehicle_Volume int,
+            eight_Peak_Hr_Pedestrian_Volume int
+    FROM "/data/data.csv"
+    USING Extractors.Csv(encoding: Encoding.UTF8, skipFirstNRows: 1);
+
+@rs1=
+SELECT Main, AVG(eight_Peak_Hr_Vehicle_Volume) AS Average_Vehicles
+FROM @data  GROUP BY Main;
+
+OUTPUT @rs1
+TO "/output/dataquery1.csv"
+USING Outputters.Csv(outputHeader: true);
