@@ -13,12 +13,15 @@
     USING Extractors.Csv(encoding: Encoding.UTF8, skipFirstNRows: 1);
 
 @rs1=
-SELECT Main, Count_Date.DayOfWeek.ToString("f") AS Day,(eight_Peak_Hr_Vehicle_Volume+eight_Peak_Hr_Pedestrian_Volume) AS Total_Traffic
+SELECT Main, Count_Date.DayOfWeek.ToString("f") AS Day, (int?)(eight_Peak_Hr_Vehicle_Volume+eight_Peak_Hr_Pedestrian_Volume) AS Total_Traffic
 FROM @data;
 
 @rs2=
-SELECT Main, Day, SUM(Total_Traffic) AS Total FROM @rs1 GROUP BY Main, Day ORDER BY Total DESC OFFSET 0 ROWS;
+SELECT Main ,MAX(Total_Traffic) AS Total FROM @rs1 GROUP BY Main;
 
-OUTPUT @rs2
+@rs3=
+SELECT s.Main, s.Total, p.Day FROM @rs2 AS s INNER JOIN @rs1 AS p ON s.Total==p.Total_Traffic AND s.Main==p.Main;
+
+OUTPUT @rs3
 TO "/output/dataquery5.csv"
 USING Outputters.Csv(outputHeader: true);
