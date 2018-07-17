@@ -32,57 +32,57 @@ adlCreds = lib.auth(tenant_id = tenant,
 adlsFileSystemClient = core.AzureDLFileSystem(adlCreds, store_name='datawarehouse')
 
 
-# x='/output/dataquery1.csv'
-#
-# with adlsFileSystemClient.open(x, 'rb') as f:
-#     df = pd.read_csv(f)
+x='/output/dataquery1.csv'
 
-# plotly.offline.plot({
-# "data": [
-#     plotly.graph_objs.Bar(x=df['Main'],y=df['Average_Vehicles'])
-# ]
-# })
+with adlsFileSystemClient.open(x, 'rb') as f:
+    df = pd.read_csv(f)
 
-# x='/output/dataquery2.csv'
-#
-# with adlsFileSystemClient.open(x, 'rb') as f:
-#     df = pd.read_csv(f)
-#
-#     print df
-#
-# plotly.offline.plot({
-# "data": [
-#     plotly.graph_objs.Pie(labels=df['Main'],values=df['Total_Traffic'])
-# ]
-# })
+plotly.offline.plot({
+"data": [
+    plotly.graph_objs.Bar(x=df['Main'],y=df['Average_Vehicles'])
+]
+})
 
-# x='/output/dataquery3.csv'
-#
-# with adlsFileSystemClient.open(x, 'rb') as f:
-#     df = pd.read_csv(f)
-#
-#     print df
-#
-# plotly.offline.plot({
-# "data": [
-#     plotly.graph_objs.Scatter(x=df['Year'],y=df['Total_Traffic'])
-# ]
-# })
+x='/output/dataquery2.csv'
 
-# x='/output/dataquery4.csv'
-#
-# with adlsFileSystemClient.open(x, 'rb') as f:
-#     df = pd.read_csv(f)
-#
-#     print df
-#
-# plotly.offline.plot({
-# "data": [
-#     plotly.graph_objs.Scatter(x=df['Day'],y=df['Total'],
-#     mode = 'markers',
-#     name = 'markers')
-# ]
-# })
+with adlsFileSystemClient.open(x, 'rb') as f:
+    df = pd.read_csv(f)
+
+    print df
+
+plotly.offline.plot({
+"data": [
+    plotly.graph_objs.Pie(labels=df['Main'],values=df['Total_Traffic'])
+]
+})
+
+x='/output/dataquery3.csv'
+
+with adlsFileSystemClient.open(x, 'rb') as f:
+    df = pd.read_csv(f)
+
+    print df
+
+plotly.offline.plot({
+"data": [
+    plotly.graph_objs.Scatter(x=df['Year'],y=df['Total_Traffic'])
+]
+})
+
+x='/output/dataquery4.csv'
+
+with adlsFileSystemClient.open(x, 'rb') as f:
+    df = pd.read_csv(f)
+
+    print df
+
+plotly.offline.plot({
+"data": [
+    plotly.graph_objs.Scatter(x=df['Day'],y=df['Total'],
+    mode = 'markers',
+    name = 'markers')
+]
+})
 
 x='/output/dataquery5.csv'
 
